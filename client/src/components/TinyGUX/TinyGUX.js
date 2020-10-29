@@ -1,35 +1,35 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuButton from '@material-ui/icons/Menu';
-import SettingsInputHdmiIcon from '@material-ui/icons/SettingsInputHdmi';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import SubjectOutlinedIcon from '@material-ui/icons/SubjectOutlined';
-import ControlCameraOutlinedIcon from '@material-ui/icons/ControlCameraOutlined';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types';
-import AxesPanel from '../AxesPanel';
-import ConnectionPanel from '../ConnectionPanel';
-import ConsolePanel from '../ConsolePanel';
-import ControlPanel from "../ControlPanel";
-import GCodePanel from '../GCodePanel';
-import GlobalPanel from '../GlobalPanel'
-import MotorsPanel from '../MotorsPanel';
-import SpindlePanel from '../SpindlePanel';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AppBar from '@material-ui/core/AppBar';
+import AxesPanel from '../AxesPanel';
+import Box from '@material-ui/core/Box';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ConnectionPanel from '../ConnectionPanel';
+import ConsolePanel from '../ConsolePanel';
+import ControlCameraOutlinedIcon from '@material-ui/icons/ControlCameraOutlined';
+import ControlPanel from '../ControlPanel';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Divider from '@material-ui/core/Divider';
+import Drawer from '@material-ui/core/Drawer';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import GCodePanel from '../GCodePanel';
+import GlobalPanel from '../GlobalPanel';
+import IconButton from '@material-ui/core/IconButton';
+import MenuButton from '@material-ui/icons/Menu';
+import MotorsPanel from '../MotorsPanel';
+import SettingsInputHdmiIcon from '@material-ui/icons/SettingsInputHdmi';
+import SpindlePanel from '../SpindlePanel';
+import SubjectOutlinedIcon from '@material-ui/icons/SubjectOutlined';
+import Tab from '@material-ui/core/Tab';
+import Tabs from '@material-ui/core/Tabs';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 
 
 const drawerWidth = 500;
@@ -211,7 +211,9 @@ export default function TinyGUX() {
               Hardware Connection
             </Typography>
           </AccordionSummary>
-          <AccordionDetails><ConnectionPanel/></AccordionDetails>
+          <AccordionDetails>
+            <ConnectionPanel />
+          </AccordionDetails>
         </Accordion>
         <Accordion>
           <AccordionSummary
@@ -225,7 +227,9 @@ export default function TinyGUX() {
               Console
             </Typography>
           </AccordionSummary>
-          <AccordionDetails><ConsolePanel/></AccordionDetails>
+          <AccordionDetails>
+            <ConsolePanel />
+          </AccordionDetails>
         </Accordion>
         <Accordion>
           <AccordionSummary
@@ -239,7 +243,9 @@ export default function TinyGUX() {
               Controls
             </Typography>
           </AccordionSummary>
-          <AccordionDetails><ControlPanel/></AccordionDetails>
+          <AccordionDetails>
+            <ControlPanel />
+          </AccordionDetails>
         </Accordion>
       </Drawer>
       <main
@@ -249,19 +255,19 @@ export default function TinyGUX() {
       >
         <div className={classes.drawerHeader} />
         <TabPanel value={value} index={0}>
-          <GlobalPanel/>
+          <GlobalPanel />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <MotorsPanel/>
+          <MotorsPanel />
         </TabPanel>
         <TabPanel value={value} index={2}>
           <AxesPanel />
         </TabPanel>
         <TabPanel value={value} index={3}>
-          <SpindlePanel/>
+          <SpindlePanel />
         </TabPanel>
         <TabPanel value={value} index={4}>
-          <GCodePanel/>
+          <GCodePanel />
         </TabPanel>
       </main>
     </div>

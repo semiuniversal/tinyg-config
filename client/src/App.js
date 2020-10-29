@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import 'fontsource-roboto';
 import { Container, CssBaseline } from '@material-ui/core';
-import PersistentDrawerLeft from './components/PersistentDrawerLeft';
+import TinyGUX from './components/TinyGUX';
 
 
 const appTheme = createMuiTheme({
@@ -80,7 +79,7 @@ class App extends Component {
       <ThemeProvider theme={appTheme}>
         <CssBaseline />
         <Container maxWidth="xl">
-          <PersistentDrawerLeft />
+          <TinyGUX />
          </Container>
       </ThemeProvider>
     );

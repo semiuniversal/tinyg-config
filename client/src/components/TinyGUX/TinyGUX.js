@@ -2,35 +2,35 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AppBar from '@material-ui/core/AppBar';
-import AxesPanel from '../AxesPanel';
-import Box from '@material-ui/core/Box';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ConnectionPanel from '../ConnectionPanel';
-import ConsolePanel from '../ConsolePanel';
-import ControlCameraOutlinedIcon from '@material-ui/icons/ControlCameraOutlined';
-import ControlPanel from '../ControlPanel';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import GCodePanel from '../GCodePanel';
-import GlobalPanel from '../GlobalPanel';
-import IconButton from '@material-ui/core/IconButton';
-import MenuButton from '@material-ui/icons/Menu';
-import MotorsPanel from '../MotorsPanel';
-import SettingsInputHdmiIcon from '@material-ui/icons/SettingsInputHdmi';
-import SpindlePanel from '../SpindlePanel';
-import SubjectOutlinedIcon from '@material-ui/icons/SubjectOutlined';
-import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-
+import Accordion from '@material-ui/core/Accordion';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AppBar from '@material-ui/core/AppBar';
+import AxesPanel from '../AxesPanel';
+import Box from '@material-ui/core/Box';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ConnectionPanel from '../ConnectionPanel';
+import ConnectionDetails from '../ConnectionDetails';
+import ConsolePanel from '../ConsolePanel';
+import ControlCameraOutlinedIcon from '@material-ui/icons/ControlCameraOutlined';
+import ControlPanel from '../ControlPanel';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Divider from '@material-ui/core/Divider';
+import Drawer from '@material-ui/core/Drawer';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import GCodePanel from '../GCodePanel';
+import GlobalPanel from '../GlobalPanel';
+import IconButton from '@material-ui/core/IconButton';
+import MenuButton from '@material-ui/icons/Menu';
+import MotorsPanel from '../MotorsPanel';
+import SettingsInputHdmiIcon from '@material-ui/icons/SettingsInputHdmi';
+import SpindlePanel from '../SpindlePanel';
+import SubjectOutlinedIcon from '@material-ui/icons/SubjectOutlined';
+import Tab from '@material-ui/core/Tab';
+import Tabs from '@material-ui/core/Tabs';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 
 const drawerWidth = 500;
 
@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
+    // Necessary for content to be below app bar.
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
@@ -125,29 +125,28 @@ const useStyles = makeStyles((theme) => ({
 export default function TinyGUX() {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setDrawerOpen(true);
   };
 
   const handleDrawerClose = () => {
-    setOpen(false);
+    setDrawerOpen(false);
   };
 
-  const [value, setValue] = React.useState(0);
+  const [tabValue, setTabValue] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleTabChange = (event, newValue) => {
+    setTabValue(newValue);
   };
-
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
         position='fixed'
         className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
+          [classes.appBarShift]: drawerOpen,
         })}
       >
         <Toolbar>
@@ -156,18 +155,18 @@ export default function TinyGUX() {
             aria-label='open drawer'
             onClick={handleDrawerOpen}
             edge='start'
-            className={clsx(classes.menuButton, open && classes.hide)}
+            className={clsx(classes.menuButton, drawerOpen && classes.hide)}
           >
             <MenuButton />
           </IconButton>
           <Typography variant='h6' noWrap>
-            TinyG Configuration
+            TinyG Config
           </Typography>
           <Tabs
             variant='scrollable'
             scrollButtons='auto'
-            value={value}
-            onChange={handleChange}
+            value={tabValue}
+            onChange={handleTabChange}
           >
             <Tab label='Global Settings' {...a11yProps(0)} />
             <Tab label='Motors' {...a11yProps(1)} />
@@ -181,14 +180,14 @@ export default function TinyGUX() {
         className={classes.drawer}
         variant='persistent'
         anchor='left'
-        open={open}
+        open={drawerOpen}
         classes={{
           paper: classes.drawerPaper,
         }}
       >
         <div className={classes.drawerHeader}>
           <Typography variant='h6' noWrap>
-            Connection Details
+            <ConnectionDetails />
           </Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? (
@@ -250,23 +249,23 @@ export default function TinyGUX() {
       </Drawer>
       <main
         className={clsx(classes.content, {
-          [classes.contentShift]: open,
+          [classes.contentShift]: drawerOpen,
         })}
       >
         <div className={classes.drawerHeader} />
-        <TabPanel value={value} index={0}>
+        <TabPanel value={tabValue} index={0}>
           <GlobalPanel />
         </TabPanel>
-        <TabPanel value={value} index={1}>
+        <TabPanel value={tabValue} index={1}>
           <MotorsPanel />
         </TabPanel>
-        <TabPanel value={value} index={2}>
+        <TabPanel value={tabValue} index={2}>
           <AxesPanel />
         </TabPanel>
-        <TabPanel value={value} index={3}>
+        <TabPanel value={tabValue} index={3}>
           <SpindlePanel />
         </TabPanel>
-        <TabPanel value={value} index={4}>
+        <TabPanel value={tabValue} index={4}>
           <GCodePanel />
         </TabPanel>
       </main>

@@ -34,37 +34,6 @@ import Typography from '@material-ui/core/Typography';
 
 const drawerWidth = 500;
 
-const TabPanel = (props) => {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role='tabpanel'
-      hidden={value !== index}
-      id={`scrollable-auto-tabpanel-${index}`}
-      aria-labelledby={`scrollable-auto-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-};
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
-const a11yProps = (index) => {
-  return {
-    id: `scrollable-auto-tab-${index}`,
-    'aria-controls': `scrollable-auto-tabpanel-${index}`,
-  };
-};
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -122,10 +91,44 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+const TabPanel = (props) => {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role='tabpanel'
+      hidden={value !== index}
+      id={`scrollable-auto-tabpanel-${index}`}
+      aria-labelledby={`scrollable-auto-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+};
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+const a11yProps = (index) => {
+  return {
+    id: `scrollable-auto-tab-${index}`,
+    'aria-controls': `scrollable-auto-tabpanel-${index}`,
+  };
+};
+
+
 export default function TinyGUX() {
   const classes = useStyles();
   const theme = useTheme();
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [drawerOpen, setDrawerOpen] = React.useState(0);
 
   const handleDrawerOpen = () => {
     setDrawerOpen(true);
@@ -140,6 +143,7 @@ export default function TinyGUX() {
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
   };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
